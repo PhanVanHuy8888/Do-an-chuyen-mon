@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebBanHang.Models.EF
 {
@@ -16,13 +17,19 @@ namespace WebBanHang.Models.EF
         [Required]
         [StringLength(150)]
         public string Title { get; set; }
+        [StringLength(150)]
         public string Alias { get; set; }
         public string Description { get; set; }
+        [AllowHtml]
         public string Detail { get; set; }
+        [StringLength(350)]
         public string Image { get; set; }
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
+        [StringLength(350)]
         public string SeoTitle { get; set; }
+        [StringLength(500)]
         public string SeoDescription { get; set; }
+        [StringLength(250)]
         public string SeoKeyWords { get; set; }
         public bool IsActive { get; set; }
 

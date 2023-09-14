@@ -70,6 +70,8 @@ E:\Net-MVC\WebBanHang\WebBanHang\bin\Microsoft.Owin.Security.Twitter.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\Microsoft.Web.Infrastructure.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\Newtonsoft.Json.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\Owin.dll
+E:\Net-MVC\WebBanHang\WebBanHang\bin\PagedList.dll
+E:\Net-MVC\WebBanHang\WebBanHang\bin\PagedList.Mvc.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Helpers.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Mvc.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Optimization.dll
@@ -79,6 +81,8 @@ E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.WebPages.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.WebPages.Razor.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\WebGrease.dll
 E:\Net-MVC\WebBanHang\WebBanHang\bin\CKFinder.pdb
+E:\Net-MVC\WebBanHang\WebBanHang\bin\PagedList.xml
+E:\Net-MVC\WebBanHang\WebBanHang\bin\PagedList.Mvc.xml
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Helpers.xml
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Mvc.xml
 E:\Net-MVC\WebBanHang\WebBanHang\bin\System.Web.Optimization.xml
@@ -108,9 +112,14 @@ E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.CreatedData.res
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateCategory.resources
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateData.resources
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateNews.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateActive.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.ChangeModels.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.isSale.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateProductCategory.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.title.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateProduct.resources
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.GenerateResource.cache
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CoreCompileInputs.cache
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
-E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateActive.resources

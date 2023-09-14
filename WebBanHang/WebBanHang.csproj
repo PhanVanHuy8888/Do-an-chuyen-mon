@@ -52,6 +52,12 @@
       <HintPath>Content\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,9 +183,19 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\Common.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SettingHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,13 +219,35 @@
     <Compile Include="Migrations\202308161333336_UpdateActive.designer.cs">
       <DependentUpon>202308161333336_UpdateActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308191501483_ChangeModels.cs" />
+    <Compile Include="Migrations\202308191501483_ChangeModels.designer.cs">
+      <DependentUpon>202308191501483_ChangeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308211453210_isSale.cs" />
+    <Compile Include="Migrations\202308211453210_isSale.designer.cs">
+      <DependentUpon>202308211453210_isSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308211510029_UpdateProductCategory.cs" />
+    <Compile Include="Migrations\202308211510029_UpdateProductCategory.designer.cs">
+      <DependentUpon>202308211510029_UpdateProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308221451504_title.cs" />
+    <Compile Include="Migrations\202308221451504_title.designer.cs">
+      <DependentUpon>202308221451504_title.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309010946550_UpdateProduct.cs" />
+    <Compile Include="Migrations\202309010946550_UpdateProduct.designer.cs">
+      <DependentUpon>202309010946550_UpdateProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
+    <Compile Include="Models\EF\Customer.cs" />
     <Compile Include="Models\EF\News.cs" />
     <Compile Include="Models\EF\Order.cs" />
     <Compile Include="Models\EF\OrderDetail.cs" />
@@ -221,38 +259,45 @@
     <Compile Include="Models\EF\SystemSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\assets\images\banner_1.jpg" />
-    <Content Include="Content\assets\images\banner_2.jpg" />
-    <Content Include="Content\assets\images\banner_3.jpg" />
-    <Content Include="Content\assets\images\blog_1.jpg" />
-    <Content Include="Content\assets\images\blog_2.jpg" />
-    <Content Include="Content\assets\images\blog_3.jpg" />
-    <Content Include="Content\assets\images\deal_ofthe_week.png" />
-    <Content Include="Content\assets\images\desc_1.jpg" />
-    <Content Include="Content\assets\images\desc_2.jpg" />
-    <Content Include="Content\assets\images\desc_3.jpg" />
-    <Content Include="Content\assets\images\map_marker.png" />
-    <Content Include="Content\assets\images\product_1.png" />
-    <Content Include="Content\assets\images\product_10.png" />
-    <Content Include="Content\assets\images\product_2.png" />
-    <Content Include="Content\assets\images\product_3.png" />
-    <Content Include="Content\assets\images\product_4.png" />
-    <Content Include="Content\assets\images\product_5.png" />
-    <Content Include="Content\assets\images\product_6.png" />
-    <Content Include="Content\assets\images\product_7.png" />
-    <Content Include="Content\assets\images\product_8.png" />
-    <Content Include="Content\assets\images\product_9.png" />
-    <Content Include="Content\assets\images\single_1.jpg" />
-    <Content Include="Content\assets\images\single_1_thumb.jpg" />
-    <Content Include="Content\assets\images\single_2.jpg" />
-    <Content Include="Content\assets\images\single_2_thumb.jpg" />
-    <Content Include="Content\assets\images\single_3.jpg" />
-    <Content Include="Content\assets\images\single_3_thumb.jpg" />
-    <Content Include="Content\assets\images\slider_1.jpg" />
+    <Content Include="Content\assets\css\bootstrap4\bootstrap.min.css" />
+    <Content Include="Content\assets\css\bootstrap4\bootstrap.min.js" />
+    <Content Include="Content\assets\css\bootstrap4\popper.js" />
+    <Content Include="Content\assets\css\categories_responsive.css" />
+    <Content Include="Content\assets\css\categories_styles.css" />
+    <Content Include="Content\assets\css\contact_responsive.css" />
+    <Content Include="Content\assets\css\contact_styles.css" />
+    <Content Include="Content\assets\css\main_styles.css" />
+    <Content Include="Content\assets\css\responsive.css" />
+    <Content Include="Content\assets\css\single_responsive.css" />
+    <Content Include="Content\assets\css\single_styles.css" />
+    <Content Include="Content\assets\css\theme-color\bridge-theme.css" />
+    <Content Include="Content\assets\css\theme-color\dark-red-theme.css" />
+    <Content Include="Content\assets\css\theme-color\default-theme.css" />
+    <Content Include="Content\assets\css\theme-color\green-theme.css" />
+    <Content Include="Content\assets\css\theme-color\lite-blue-theme.css" />
+    <Content Include="Content\assets\css\theme-color\orange-theme.css" />
+    <Content Include="Content\assets\css\theme-color\pink-theme.css" />
+    <Content Include="Content\assets\css\theme-color\purple-theme.css" />
+    <Content Include="Content\assets\css\theme-color\red-theme.css" />
+    <Content Include="Content\assets\css\theme-color\yellow-theme.css" />
+    <Content Include="Content\assets\img\accessories%27s\1.jpg" />
+    <Content Include="Content\assets\img\accessories%27s\2.jpg" />
+    <Content Include="Content\assets\img\accessories%27s\3.jpg" />
+    <Content Include="Content\assets\img\men%27s\1.jpg" />
+    <Content Include="Content\assets\img\men%27s\2.jpg" />
+    <Content Include="Content\assets\img\men%27s\3.jpg" />
+    <Content Include="Content\assets\img\men%27s\4.jpg" />
+    <Content Include="Content\assets\img\slider%27s\1.jpg" />
+    <Content Include="Content\assets\img\slider%27s\2.jpg" />
+    <Content Include="Content\assets\img\women%27s\1.jpg" />
+    <Content Include="Content\assets\img\women%27s\2.jpg" />
+    <Content Include="Content\assets\img\women%27s\3.jpg" />
+    <Content Include="Content\assets\img\women%27s\4.jpg" />
     <Content Include="Content\assets\js\categories_custom.js" />
     <Content Include="Content\assets\js\contact_custom.js" />
     <Content Include="Content\assets\js\custom.js" />
@@ -274,17 +319,6 @@
     <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\owl.video.play.png" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.svg" />
     <Content Include="Content\assets\plugins\themify-icons\themify-icons.css" />
-    <Content Include="Content\assets\styles\bootstrap4\bootstrap.min.css" />
-    <Content Include="Content\assets\styles\bootstrap4\bootstrap.min.js" />
-    <Content Include="Content\assets\styles\bootstrap4\popper.js" />
-    <Content Include="Content\assets\styles\categories_responsive.css" />
-    <Content Include="Content\assets\styles\categories_styles.css" />
-    <Content Include="Content\assets\styles\contact_responsive.css" />
-    <Content Include="Content\assets\styles\contact_styles.css" />
-    <Content Include="Content\assets\styles\main_styles.css" />
-    <Content Include="Content\assets\styles\responsive.css" />
-    <Content Include="Content\assets\styles\single_responsive.css" />
-    <Content Include="Content\assets\styles\single_styles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -3084,9 +3118,16 @@
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.min.css" />
+    <Content Include="Content\nav.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\WebBanHang.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\WebBanHang.dll" />
+    <Content Include="obj\Debug\WebBanHang.pdb" />
+    <Content Include="Scripts\autoNumeric-1.9.45.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -3181,6 +3222,29 @@
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Add.cshtml" />
+    <Content Include="Content\ckeditor\CHANGES.md" />
+    <Content Include="Content\ckeditor\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Content\ckeditor\README.md" />
+    <Content Include="Content\ckeditor\samples\assets\posteddata.php" />
+    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
+    <Content Include="Content\ckeditor\skins\moono\readme.md" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
     <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -3217,21 +3281,14 @@
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.woff" />
-    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\News\Add.cshtml" />
-    <Content Include="Content\ckeditor\CHANGES.md" />
-    <Content Include="Content\ckeditor\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\scayt\README.md" />
-    <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="Content\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Content\ckeditor\README.md" />
-    <Content Include="Content\ckeditor\samples\assets\posteddata.php" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
-    <Content Include="Content\ckeditor\skins\moono\readme.md" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\WebBanHang.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\WebBanHang.csproj.CopyComplete" />
+    <Content Include="obj\Debug\WebBanHang.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\WebBanHang.csproj.GenerateResource.cache" />
+    <Content Include="Areas\Admin\Views\ProductImage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3242,7 +3299,30 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\images\1%281%29.jpg" />
+    <Content Include="Uploads\images\1%282%29.jpg" />
+    <Content Include="Uploads\images\1.jpg" />
+    <Content Include="Uploads\images\2%281%29.jpg" />
+    <Content Include="Uploads\images\2%282%29.jpg" />
+    <Content Include="Uploads\images\2.jpg" />
+    <Content Include="Uploads\images\3%281%29.jpg" />
+    <Content Include="Uploads\images\3%282%29.jpg" />
+    <Content Include="Uploads\images\3.jpg" />
+    <Content Include="Uploads\images\4%281%29.jpg" />
+    <Content Include="Uploads\images\4.jpg" />
+    <Content Include="Uploads\_thumbs\Images\1%281%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\1%282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\2%281%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\2%282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\3%281%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\3%282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\4%281%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\4.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3277,12 +3357,29 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Menu\_MenuTop.cshtml" />
+    <Content Include="Views\Menu\_MenuProductCategory.cshtml" />
+    <Content Include="Views\Menu\_MenuArrivals.cshtml" />
+    <Content Include="Views\Products\Partial_ItemsByCateId.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Menu\_MenuLeft.cshtml" />
+    <Content Include="Views\Products\ProductCategory.cshtml" />
+    <Content Include="Views\Products\Detail.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\Cart\CheckOut.cshtml" />
+    <Content Include="Views\Products\ProductLike.cshtml" />
+    <Content Include="Views\Cart\Partial_Item_Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Models\EF\NewFolder1\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Uploads\files\" />
+    <Folder Include="Uploads\flash\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -3327,6 +3424,30 @@
     <EmbeddedResource Include="Migrations\202308161333336_UpdateActive.resx">
       <DependentUpon>202308161333336_UpdateActive.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308191501483_ChangeModels.resx">
+      <DependentUpon>202308191501483_ChangeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308211453210_isSale.resx">
+      <DependentUpon>202308211453210_isSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308211510029_UpdateProductCategory.resx">
+      <DependentUpon>202308211510029_UpdateProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308221451504_title.resx">
+      <DependentUpon>202308221451504_title.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309010946550_UpdateProduct.resx">
+      <DependentUpon>202309010946550_UpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.ChangeModels.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.CreatedData.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.isSale.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.title.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.UpdateActive.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.UpdateCategory.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.UpdateData.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.UpdateNews.resources" />
+    <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.UpdateProductCategory.resources" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

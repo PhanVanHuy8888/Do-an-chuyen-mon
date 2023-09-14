@@ -18,3 +18,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.navbar_menu {
+    font-weight: bold;
+}
+
