@@ -5,8 +5,15 @@
     <ul class="navbar_menu">
         @foreach (var item in Model)
         {
-
-            <li><a href="@item.Alias">@item.Title</a></li>
+            if (item.Alias.Equals("trang-chu"))
+            {
+                item.Alias = "";
+            }
+            if (!string.IsNullOrEmpty(item.Link))
+            {
+                item.Alias = item.Link;
+            }
+            <li><a style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold  "  href="@item.Alias">@item.Title</a></li>
         }      
     </ul>
 }

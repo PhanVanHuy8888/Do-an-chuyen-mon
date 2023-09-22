@@ -63,18 +63,24 @@
                         @Html.HiddenFor(x => x.Id)
                         @Html.HiddenFor(x => x.CreatedDate)
                         <!-- your steps content here -->
-                        <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tiêu đề" })
-                                @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
-                            </div>
-                            
-                            <div class="form-group">
-                                <a href="/admin/productcategory" class="btn btn-danger">Quay lại</a>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
+                    <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tiêu đề</label>
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                            @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Alias</label>
+                            @Html.TextBoxFor(x => x.Alias, new { @class = "form-control", @placeholder = "Alias" })
+                            @Html.ValidationMessageFor(x => x.Alias, null, new { @class = "text-danger" })
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <a href="/admin/productcategory" class="btn btn-danger">Quay lại</a>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                    </div>
                     }
                 </div>
             }

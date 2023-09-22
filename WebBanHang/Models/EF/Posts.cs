@@ -25,14 +25,7 @@ namespace WebBanHang.Models.EF
         [StringLength(350)]
         public string Image { get; set; }
         public int CategoryId { get; set; }
-        [StringLength(350)]
-        public string SeoTitle { get; set; }
-        [StringLength(500)]
-        public string SeoDescription { get; set; }
-        [StringLength(250)]
-        public string SeoKeyWords { get; set; }
         public bool IsActive { get; set; }
-
         public virtual Category Category { get; set; }
     }
 }

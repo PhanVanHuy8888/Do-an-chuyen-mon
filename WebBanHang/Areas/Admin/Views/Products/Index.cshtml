@@ -48,8 +48,8 @@
             <h3 class="card-title">@ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/products/add" class="btn btn-primary">Thêm mới</a>
-                <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xoá</a>
+                <a href="/admin/products/add" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                <a href="#" class="btn btn-danger" id="BtnDeleteAll"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
         <div class="card-body">
@@ -60,7 +60,7 @@
                         <div class="input-group input-group-sm">
                             @Html.TextBox("SearchText", null, new { @class = "form-control", @placeholder = "tìm kiếm ...." })
                             <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                                <button type="submit" class="btn btn-info btn-flat"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </span>
                         </div>
                     }
@@ -78,9 +78,8 @@
                         <th>Số lượng</th>
                         <th>Giá</th>
                         <th>Ngày tạo</th>
-                        <th>Home</th>
                         <th>Hiển thị</th>
-                        <th></th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,30 +88,24 @@
                         var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                            var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
-                            var strCheckHome = item.IsHome ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td>@i</td>
-                                <td><img class="imgProduct" data-id="@item.Id" src="@item.ProductImages.FirstOrDefault(x=>x.IsDefault).Image" width="50" /></td>
+                                <td><img class="imgProduct" data-id="@item.Id" 
+                                         src="@item.ProductImages.FirstOrDefault(x=>x.IsDefault).Image" width="50" /></td>
                                 <td style="max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.Title</td>
                                 <td>@item.ProductCategory.Title</td>
                                 <td>@item.Quantity</td>
                                 <td>@item.Price</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyy")</td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Id" class="btnHome">
-                                        @Html.Raw(strCheckHome)
-                                    </a>
+                                <td  class="text-center">
+                                    <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
-                                <td class="text-center">
-                                    <a href="#" data-id="@item.Id" class="btnActive">
-                                        @Html.Raw(strCheck)
-                                    </a>
-                                </td>
+                                
                                 <td>
-                                    <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
+                                    <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>
                             i++;
@@ -240,46 +233,29 @@
                 }
             })
 
+            
             $('body').on('click', '.btnActive', function (e) {
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.data("id");
                 $.ajax({
-                    url: '/admin/products/IsActive',
+                    url: '/admin/Products/IsActive',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
                         if (rs.success) {
                             if (rs.isActive) {
-                                btn.html("<i class='fas fa-check text-success'></i>");
+                                btn.html("<i class='fa fa-check text-success'></i>");
                             } else {
-                                btn.html("<i class='fas fa-times text-danger'></i>")
+                                btn.html("<i class='fas fa-times text-danger'></i>");
                             }
                         }
 
                     }
-                })
-            })
-            $('body').on('click', '.btnHome', function (e) {
-                e.preventDefault();
-                var btn = $(this);
-                var id = btn.data("id");
-                $.ajax({
-                    url: '/admin/products/IsHome',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function (rs) {
-                        if (rs.success) {
-                            if (rs.isActive) {
-                                btn.html("<i class='fas fa-check text-success'></i>");
-                            } else {
-                                btn.html("<i class='fas fa-times text-danger'></i>")
-                            }
-                        }
+                });
+            });
 
-                    }
-                })
-            })
+           
         })
     </script>
 }

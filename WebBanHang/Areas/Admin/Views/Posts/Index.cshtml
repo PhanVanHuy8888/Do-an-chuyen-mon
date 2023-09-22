@@ -45,8 +45,8 @@
             <h3 class="card-title">Danh sách @ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/posts/add" class="btn btn-primary">Thêm mới</a>
-                <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xoá</a>
+                <a href="/admin/posts/add" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                <a href="#" class="btn btn-danger" id="BtnDeleteAll"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
         <div class="card-body">
@@ -82,8 +82,8 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/admin/posts/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
+                                    <a href="/admin/posts/edit/@item.Id" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>
                             i++;

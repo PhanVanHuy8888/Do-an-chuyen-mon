@@ -48,11 +48,12 @@ namespace WebBanHang.Areas.Admin.Controllers
                 model.CategoryId = 3;
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
-                db.News.Add(model);
+                db.News.Attach(model);
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(model);
         }
 
         public ActionResult Edit(int id)

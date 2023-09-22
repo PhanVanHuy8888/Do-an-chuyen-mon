@@ -183,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
@@ -239,6 +240,18 @@
     <Compile Include="Migrations\202309010946550_UpdateProduct.designer.cs">
       <DependentUpon>202309010946550_UpdateProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202309161415341_UpdatePayment.cs" />
+    <Compile Include="Migrations\202309161415341_UpdatePayment.designer.cs">
+      <DependentUpon>202309161415341_UpdatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309161456106_UpdateField.cs" />
+    <Compile Include="Migrations\202309161456106_UpdateField.designer.cs">
+      <DependentUpon>202309161456106_UpdateField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309200236517_refesh.cs" />
+    <Compile Include="Migrations\202309200236517_refesh.designer.cs">
+      <DependentUpon>202309200236517_refesh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -259,6 +272,7 @@
     <Compile Include="Models\EF\SystemSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewOrder.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -3118,9 +3132,12 @@
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.min.css" />
-    <Content Include="Content\nav.css" />
+    <Content Include="Content\Header.css" />
+    <Content Include="Content\Index.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\Style.css" />
+    <Content Include="Content\templates\send1.html" />
+    <Content Include="Content\templates\send2.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -3289,6 +3306,9 @@
     <Content Include="Areas\Admin\Views\ProductImage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutEmpty.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Partial_Product.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3371,12 +3391,13 @@
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Products\ProductLike.cshtml" />
     <Content Include="Views\Cart\Partial_Item_Pay.cshtml" />
+    <Content Include="Views\Cart\Partial_CheckOut.cshtml" />
+    <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
-    <Folder Include="Models\EF\NewFolder1\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Uploads\files\" />
     <Folder Include="Uploads\flash\" />
@@ -3438,6 +3459,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202309010946550_UpdateProduct.resx">
       <DependentUpon>202309010946550_UpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309161415341_UpdatePayment.resx">
+      <DependentUpon>202309161415341_UpdatePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309161456106_UpdateField.resx">
+      <DependentUpon>202309161456106_UpdateField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309200236517_refesh.resx">
+      <DependentUpon>202309200236517_refesh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.ChangeModels.resources" />
     <EmbeddedResource Include="obj\Debug\WebBanHang.Migrations.CreatedData.resources" />

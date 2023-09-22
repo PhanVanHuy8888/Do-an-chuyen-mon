@@ -1,7 +1,13 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Thanh toán";
 }
+
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
 
 <link rel="stylesheet" type="text/css" href="~/Content/assets/css/categories_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/assets/css/categories_responsive.css">
@@ -13,53 +19,38 @@
 
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Thanh toán</a></li>
+                    <li><a href="/trang-chu">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
                 </ul>
             </div>
 
+            <!-- Sidebar -->
             <!-- Main Content -->
-
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Thanh toán</h1>
-                    <p>Bạn hãy kiểm tra lại thông tin đơn hàng của mình!!</p>
+
+                <div class="col-md-12 text-center">
+                    <h2 class="">Thanh toán</h2>
                 </div>
+
             </div>
             <hr />
             @if (ViewBag.CheckCart != null)
             {
                 <div class="row">
-                    <div class="col-md-8">
-                        <h3>Thông tin khách hàng</h3>
-                        <div class="form-group">
-                            <label>Họ tên khách hàng</label>
-                            <input type="text" name="CustomerName" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
-                            <input type="text" name="Address" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Số địện thoại</label>
-                            <input type="text" name="Phone" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Họ tên khách hàng</label>
-                            <input type="text" name="Email" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-block btn-success">Đặt hàng</button>
-                        </div>
+                    <div id="show_success"></div>
+                    <div class="col-md-9">
+                        @Html.Action("Partial_CheckOut", "Cart")
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         @Html.Action("Partial_Item_Pay", "Cart")
+
                     </div>
                 </div>
-            }else
+            }
+            else
             {
                 <div>
-                    Chưa có sản phẩm nào ! <a href="/trang-chu">Mua hàng</a>
+                    Chưa có sản phẩm <a href="/san-pham">Mua hàng</a> 
                 </div>
             }
         </div>
@@ -68,4 +59,36 @@
 
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script>
+        function Fail(rs) {
+            if (!rs.Success) {
+                $('#show_success').html("Bạn mua hàng thất bại! Xin vui lòng thử lại");
+            }
+        }
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'CustomerName': {
+                        required: true
+                    },
+                    'Phone': {
+                        required: true
+                    },
+                    'Address': {
+                        required: true
+                    },
+                    'Email': {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    'CustomerName': 'Bạn khổng để trống trường này',
+                    'Phone': 'Bạn khổng để trống trường này',
+                    'Address': 'Bạn khổng để trống trường này',
+                    'Email': 'Email chưa hợp lệ'
+                }
+            });
+        });
+    </script>
 }

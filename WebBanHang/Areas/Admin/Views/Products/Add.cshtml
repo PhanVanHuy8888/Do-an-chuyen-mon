@@ -135,33 +135,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "IsActiveCheckbox" })
-                                                    @*<input class="custom-control-input" type="checkbox" id="customCheckbox2" checked="">*@
-                                                    <label for="IsActiveCheckbox" class="custom-control-label">Hot</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox" })
-                                                    @*<input class="custom-control-input" type="checkbox" id="customCheckbox2" checked="">*@
-                                                    <label for="IsFeatureCheckbox" class="custom-control-label">Nổi bật</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "IsSaleCheckbox" })
-                                                    @*<input class="custom-control-input" type="checkbox" id="customCheckbox2" checked="">*@
-                                                    <label for="IsSaleCheckbox" class="custom-control-label">Khuyến mãi</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -199,20 +172,7 @@
                                                 @Html.ValidationMessageFor(x => x.SeoTitle, null, new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="inputEmail" class="col-sm-2 col-form-label">Seo Description</label>
-                                            <div class="col-sm-10">
-                                                @Html.TextBoxFor(x => x.SeoDescription, new { @class = "form-control", @placeholder = "Seo Description" })
-                                                @Html.ValidationMessageFor(x => x.SeoDescription, null, new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputName2" class="col-sm-2 col-form-label">Seo KeyWords</label>
-                                            <div class="col-sm-10">
-                                                @Html.TextBoxFor(x => x.SeoKeyWords, new { @class = "form-control", @placeholder = "Seo KeyWords" })
-                                                @Html.ValidationMessageFor(x => x.SeoKeyWords, null, new { @class = "text-danger" })
-                                            </div>
-                                        </div>
+                                        
                                     </form>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -297,25 +257,8 @@
                             <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnDel">Xoá</a></td>
                        </tr>`;
             }
-            
-
-
-
             $('#tbHtml').append(str);
             $('#tCurrentId').val(currentId);
-            //$('#tbHtml tr td a').each(function () {
-            //    $(this).click(function () {
-            //        var conf = confirm('Bạn có muốn xoá ảnh này không?');
-            //        if (conf === true) {
-            //            var _id = $(this).data('id');
-            //            $('#trow_' + _id).remove();
-            //        }
-            //        var temp = $('#tCurrentId').val();
-            //        var currentId = parseInt(temp) - 1;
-            //        $('#tCurrentId').val(currentId);
-
-            //    });
-            //});
         }
     </script>
 }
