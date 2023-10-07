@@ -49,9 +49,8 @@ namespace WebBanHang.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,15 @@ namespace WebBanHang.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string UserName { get; set; }
+
+        [Required]
+        public string FullName { get; set; }
+        public string Phone { get; set; }
+        public string Role { get; set; }
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

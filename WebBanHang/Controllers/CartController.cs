@@ -147,6 +147,7 @@ namespace WebBanHang.Controllers
             return Json(code);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public ActionResult AddToCart(int id, int quantity)
         {

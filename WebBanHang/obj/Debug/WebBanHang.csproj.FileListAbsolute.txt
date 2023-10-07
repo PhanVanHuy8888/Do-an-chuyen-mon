@@ -126,3 +126,7 @@ E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdatePayment.resources
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateField.resources
 E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.refesh.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.update.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.update2.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.update1.resources
+E:\Net-MVC\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.update12.resources

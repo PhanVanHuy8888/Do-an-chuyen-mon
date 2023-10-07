@@ -57,9 +57,9 @@
             padding-left: 10px;
         }
 
-        .child li:last-child {
+        /*.child li:last-child {
             border-top: 1px solid #808080;
-        }
+        }*/
 
 .nav li {
     margin: 0 10px;
@@ -94,6 +94,10 @@
 
 .parent:hover .child {
     display: block;
+}
+
+.child {
+    margin-right: 50px;
 }
 
 .aa-footer-top {

@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-    <link href="~/Content/Index.css" rel="stylesheet" />
     <link href="~/Content/Header.css" rel="stylesheet" />
     <meta name="description" content="@ViewBag.SeoDescription" />
     <meta name="keywords" itemprop="keywords" content="@ViewBag.SeoKeyWord" />
@@ -24,7 +23,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <style>
         ul.navbar_user li:hover {
-            color: red; 
+            color: red;
         }
     </style>
 </head>
@@ -44,14 +43,29 @@
                         @Html.Action("MenuTop", "Menu")
                         <ul class="navbar_user nav">
                             <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                            <li class="parent">
-                                <a href="#">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </a>
-                                <ul class="child">
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="#">Register</a></li>
-                                </ul>
+                            <li class="parent" >
+
+                                @if (!Request.IsAuthenticated)
+                                {
+                                    <a href="#">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="child" >
+                                        <li style="border-bottom: 1px solid #000f"><a class="text-center" href="Account/Login">Đăng nhập</a></li>
+                                        <li><a @*style="border-top: 1px solid green;"*@ class="text-center" href="Account/Register">Đăng ký</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a href="#">
+                                        @User.Identity.Name
+                                    </a>
+                                    <ul class="child" style="margin-right: 60px;">
+                                        <li><a href="#"> @User.Identity.Name</a></li>
+                                        <li><a href="javascript:document.getElementById('logOffForm').submit()">Đăng xuất</a></li>
+                                    </ul>
+                                }
+
                             </li>
 
                             <li class="checkout">
@@ -155,5 +169,14 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jsShopping.js"></script>
     @RenderSection("scripts", required: false)
+
+    @if (Request.IsAuthenticated)
+    {
+        <div style="display:none">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+            {
+                @Html.AntiForgeryToken()}
+        </div>
+    }
 </body>
 </html>

@@ -28,6 +28,19 @@ namespace WebBanHang
            );
 
             routes.MapRoute(
+               name: "Post",
+               url: "bai-viet",
+               defaults: new { controller = "Post", action = "Index", alias = UrlParameter.Optional },
+               namespaces: new[] { "WebBanHang.Controllers" }
+           );
+            routes.MapRoute(
+          name: "DetailPost",
+          url: "chi-tiet-n{id}",
+          defaults: new { controller = "Post", action = "Detail", id = UrlParameter.Optional },
+          namespaces: new[] { "WebBanHangOnline.Controllers" }
+          );
+
+            routes.MapRoute(
               name: "Cart",
               url: "gio-hang",
               defaults: new { controller = "Cart", action = "Index", alias = UrlParameter.Optional },

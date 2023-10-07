@@ -1,67 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebBanHang.Models.EF;
 using WebBanHang.Models;
+using WebBanHang.Models.EF;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
     public class PostsController : Controller
     {
-       
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Posts
         public ActionResult Index()
         {
-            var items = db.Posts.ToList();
-            return View(items);
+            var posts = db.Posts.Include(p => p.Category);
+            return View(posts.ToList());
         }
-        public ActionResult Add()
+
+        // GET: Admin/Posts/Create
+        public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Title");
             return View();
         }
 
+        // POST: Admin/Posts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Posts model)
+        public ActionResult Create([Bind(Include = "Id,Title,Alias,Description,Detail,Image,CategoryId,SeoTitle,SeoDescription,SeoKeywords,IsActive,CreatedBy,CreatedDate,ModifiedDate,ModifiedBy")] Posts posts)
         {
             if (ModelState.IsValid)
             {
-                model.CreatedDate = DateTime.Now;
-                model.CategoryId = 3;
-                model.ModifiedDate = DateTime.Now;
-                model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
-                db.Posts.Add(model);
+                db.Posts.Add(posts);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();
+
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Title", posts.CategoryId);
+            return View(posts);
         }
 
-        public ActionResult Edit(int id)
+        // GET: Admin/Posts/Edit/5
+        public ActionResult Edit(int? id)
         {
-            var item = db.Posts.Find(id);
-            return View(item);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Posts posts = db.Posts.Find(id);
+            if (posts == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Title", posts.CategoryId);
+            return View(posts);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Posts model)
+        public ActionResult Edit([Bind(Include = "Id,Title,Alias,Description,Detail,Image,CategoryId,SeoTitle,SeoDescription,SeoKeywords,IsActive,CreatedBy,CreatedDate,ModifiedDate,ModifiedBy")] Posts posts)
         {
             if (ModelState.IsValid)
             {
-                model.ModifiedDate = DateTime.Now;
-                model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
-                db.Posts.Attach(model);
-                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(posts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Title", posts.CategoryId);
+            return View(posts);
         }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -72,41 +86,17 @@ namespace WebBanHang.Areas.Admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = true });
             }
+
             return Json(new { success = false });
         }
 
-        [HttpPost]
-        public ActionResult isActive(int id)
+        protected override void Dispose(bool disposing)
         {
-            var item = db.Posts.Find(id);
-            if (item != null)
+            if (disposing)
             {
-                item.IsActive = !item.IsActive;
-                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return Json(new { success = true, isActive = item.IsActive });
+                db.Dispose();
             }
-            return Json(new { success = false });
-        }
-
-        [HttpPost]
-        public ActionResult DeleteAll(string ids)
-        {
-            if (!string.IsNullOrEmpty(ids))
-            {
-                var items = ids.Split(',');
-                if (items != null && items.Any())
-                {
-                    foreach (var item in items)
-                    {
-                        var obj = db.Posts.Find(Convert.ToInt32(item));
-                        db.Posts.Remove(obj);
-                        db.SaveChanges();
-                    }
-                }
-                return Json(new { success = true, });
-            }
-            return Json(new { success = false });
+            base.Dispose(disposing);
         }
     }
 }

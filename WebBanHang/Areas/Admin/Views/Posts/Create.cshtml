@@ -1,0 +1,99 @@
+﻿@model WebBanHang.Models.EF.Posts
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm mới bài viết</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal container">
+    <h4>Bài viết</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="exampleInputEmail1">Tiêu đề</label>
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tiêu đề" })
+        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        <label for="exampleInputFile">Ảnh đại diện</label>
+        <div class="input-group">
+            <div class="custom-file">
+                @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
+            </div>
+            <div class="input-group-append">
+                <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage');" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Mô tả</label>
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Chi tiết</label>
+        @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Seo title</label>
+        @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a href="/admin/posts" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+}
+
+@section  scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+
+    </script>
+}

@@ -1,21 +1,58 @@
 ﻿@model IEnumerable<WebBanHang.Models.EF.ProductCategory>
 
+<style>
+    .home-banner {
+        display: flex;
+        margin: 20px 0 20px 15px;
+    }
+
+    .home-banner-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-right: 15px;
+    }
+
+        .home-banner-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+
+        .home-banner-item .btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-banner-item:hover .btn {
+            background-color: #2980b9;
+        }
+</style>
+
 @if (Model != null && Model.Any())
 {
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-4">
-                        <div class="banner_item align-items-center" style="background-image: url(@item.Icon)">
-                            <div class="banner_category">
-                                <a href="/san-pham">@item.Title</a>
-                            </div>
-                        </div>
-                    </div>
-                }      
-            </div>
+    <div class="home-banner" style="padding-top: 35px !important;">
+        <div class="home-banner-item">
+            <img src="https://routine.vn/pub/media/wysiwyg/Banner-Tang-150k.jpg" alt="áo nam">
+            <a class="btn" style="text-transform: uppercase;" href="/san-pham">Xem ngay</a>
+        </div>
+        <div class="home-banner-item">
+            <img src="https://routine.vn/pub/media/wysiwyg/600x950_banner_2_.png" alt="áo nam">
+            <a class="btn" style="text-transform: uppercase;" href="/san-pham">Xem ngay</a>
+        </div>
+        <div class="home-banner-item">
+            <img src="https://routine.vn/pub/media/wysiwyg/Banner-Wedding-session.jpg" alt="áo nam">
+            <a class="btn" style="text-transform: uppercase;" href="/san-pham">Xem ngay</a>
         </div>
     </div>
 }

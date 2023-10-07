@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebBanHang.Models.RegisterViewModel>
+
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <h2>Thông tin cá nhân </h2>
+        <h5>Tên: @item.FullName</h5>
+    }
+
